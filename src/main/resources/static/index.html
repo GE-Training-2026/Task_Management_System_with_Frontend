@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="dashboard">
+    <aside class="sidebar">
+        <h2>Task Master</h2>
+        <nav>
+            <button class="nav-btn active" onclick="showSection('tasks')">Tasks</button>
+            <button class="nav-btn" onclick="showSection('users')">Users</button>
+            <button class="nav-btn" onclick="showSection('categories')">Categories</button>
+            <button class="nav-btn" onclick="showSection('priorities')">Priorities</button>
+        </nav>
+    </aside>
+
+    <main class="content">
+
+        <section id="users" class="view-section hidden">
+            <div class="header-row">
+                <h2>Manage Users</h2>
+            </div>
+            <div class="card form-card">
+                <form id="userForm" onsubmit="saveUser(event)">
+                    <input type="text" id="userName" placeholder="Full Name" required>
+                    <input type="email" id="userEmail" placeholder="Email Address" required>
+                    <button type="submit" class="btn primary">Add User</button>
+                </form>
+            </div>
+            <div class="card">
+                <table class="data-table">
+                    <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Action</th></tr></thead>
+                    <tbody id="userTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="categories" class="view-section hidden">
+            <div class="header-row">
+                <h2>Manage Categories</h2>
+            </div>
+            <div class="card form-card">
+                <form id="categoryForm" onsubmit="saveCategory(event)">
+                    <input type="text" id="categoryName" placeholder="Category Name" required>
+                    <button type="submit" class="btn primary">Add Category</button>
+                </form>
+            </div>
+            <div class="card">
+                <table class="data-table">
+                    <thead><tr><th>ID</th><th>Name</th><th>Action</th></tr></thead>
+                    <tbody id="categoryTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="priorities" class="view-section hidden">
+            <div class="header-row">
+                <h2>Manage Priorities</h2>
+            </div>
+            <div class="card form-card">
+                <form id="priorityForm" onsubmit="savePriority(event)">
+                    <input type="text" id="priorityLevel" placeholder="Priority Level (e.g., High, Low)" required>
+                    <button type="submit" class="btn primary">Add Priority</button>
+                </form>
+            </div>
+            <div class="card">
+                <table class="data-table">
+                    <thead><tr><th>ID</th><th>Level</th><th>Action</th></tr></thead>
+                    <tbody id="priorityTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="tasks" class="view-section">
+            <div class="header-row">
+                <h2>Manage Tasks</h2>
+            </div>
+            <div class="card form-card">
+                <form id="taskForm" onsubmit="saveTask(event)">
+                    <input type="text" id="taskTitle" placeholder="Task Title" required>
+                    <input type="text" id="taskDesc" placeholder="Description" required>
+
+                    <select id="taskUser" required><option value="">Select User</option></select>
+                    <select id="taskCategory" required><option value="">Select Category</option></select>
+                    <select id="taskPriority" required><option value="">Select Priority</option></select>
+
+                    <button type="submit" class="btn primary">Create Task</button>
+                </form>
+            </div>
+            <div class="card">
+                <table class="data-table">
+                    <thead><tr><th>Title</th><th>Status</th><th>Assigned To</th><th>Category</th><th>Priority</th><th>Action</th></tr></thead>
+                    <tbody id="taskTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+</div>
+<script src="/js/app.js"></script>
+</body>
+</html>
